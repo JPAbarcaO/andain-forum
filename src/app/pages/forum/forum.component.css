@@ -1,0 +1,4 @@
+.fixed-textarea {
+  height: 120px !important; /* Mantiene un tamaño fijo de 4 líneas */
+  resize: none !important; /* Evita que el usuario cambie el tamaño */
+}

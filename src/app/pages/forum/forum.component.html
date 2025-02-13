@@ -1,0 +1,153 @@
+<div class="container my-5">
+  <!-- Header con título y botón de logout -->
+  <div class="p-grid p-justify-between p-align-center mb-4">
+    <div class="p-col-8">
+      <h2 class="text-center">Foro de Discusión</h2>
+    </div>
+    <div class="p-col-2 text-right">
+      <button
+        pButton
+        type="button"
+        label="Cerrar sesión"
+        icon="pi pi-power-off"
+        class="p-button-danger p-button-rounded"
+        (click)="logout()"
+      ></button>
+    </div>
+  </div>
+
+  <div class="p-grid p-justify-center">
+    <div class="p-col-12 p-md-8">
+      <!-- Formulario para crear un nuevo post -->
+      <p-card class="mb-4">
+        <ng-template pTemplate="header">
+          <h5 class="mb-0">Crear un nuevo post</h5>
+        </ng-template>
+        <ng-template pTemplate="content">
+          <div class="p-fluid">
+            <div class="p-field">
+              <label for="postTitle">Título</label>
+              <input
+                id="postTitle"
+                type="text"
+                pInputText
+                class="mb-2"
+                [(ngModel)]="newPostTitle"
+                placeholder="Título del post"
+              />
+            </div>
+
+            <div class="p-field">
+              <label for="postContent">Contenido</label>
+              <textarea
+                id="postContent"
+                pInputTextarea
+                rows="5"
+                autoResize="false"
+                class="fixed-textarea mb-2"
+                [(ngModel)]="newPostContent"
+                placeholder="Escribe tu post aquí..."
+              ></textarea>
+            </div>
+
+            <button
+              pButton
+              type="button"
+              label="Publicar"
+              icon="pi pi-check"
+              class="p-button-success p-button-rounded"
+              (click)="createPost()"
+            ></button>
+          </div>
+        </ng-template>
+      </p-card>
+
+      <!-- Lista de Posts -->
+      <div *ngFor="let post of posts" class="mb-4">
+        <p-card class="p-shadow-3 p-p-3">
+          <ng-template pTemplate="header">
+            <h3 class="mb-1">{{ post.title }}</h3>
+          </ng-template>
+
+          <ng-template pTemplate="content">
+            <div *ngIf="editingPostId === post.id; else viewMode">
+              <div class="p-field">
+                <label for="editTitle">Título</label>
+                <input
+                  id="editTitle"
+                  type="text"
+                  pInputText
+                  class="mb-2"
+                  [(ngModel)]="editedTitle"
+                />
+              </div>
+
+              <div class="p-field">
+                <label for="editContent">Contenido</label>
+                <textarea
+                  id="editContent"
+                  pInputTextarea
+                  rows="4"
+                  autoResize="false"
+                  class="fixed-textarea mb-2"
+                  [(ngModel)]="editedContent"
+                ></textarea>
+              </div>
+
+              <button
+                pButton
+                type="button"
+                label="Guardar"
+                icon="pi pi-save"
+                class="p-button-success me-2 p-button-rounded"
+                (click)="saveEdit(post.id)"
+              ></button>
+              <button
+                pButton
+                type="button"
+                label="Cancelar"
+                icon="pi pi-times"
+                class="p-button-secondary p-button-rounded"
+                (click)="cancelEdit()"
+              ></button>
+            </div>
+          </ng-template>
+
+          <ng-template #viewMode>
+            <p>{{ post.content }}</p>
+            <small class="text-muted">
+              <i class="pi pi-user"></i>
+              <strong>{{ post.author_email }}</strong> |
+              <i class="pi pi-calendar"></i>
+              {{ post.createdAt | date : "short" }}
+            </small>
+
+            <!-- 🔹 Botones de acción (Admin puede editar/eliminar todos los posts) -->
+            <div
+              *ngIf="userId === post.authorId || userRole === 'admin'"
+              class="mt-3"
+            >
+              <button
+                pButton
+                type="button"
+                label="Editar"
+                icon="pi pi-pencil"
+                class="p-button-warning me-2 p-button-rounded"
+                (click)="editPost(post)"
+              ></button>
+              <button
+                pButton
+                type="button"
+                label="Eliminar"
+                icon="pi pi-trash"
+                class="p-button-danger p-button-rounded"
+                (click)="deletePost(post.id)"
+              ></button>
+            </div>
+          </ng-template>
+        </p-card>
+      </div>
+
+    </div>
+  </div>
+</div>
