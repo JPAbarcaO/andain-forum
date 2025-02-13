@@ -1,27 +1,67 @@
-# AndainForum
+# Andain Forum - Aplicación Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.13.
+## 📌 Descripción
+Andain Forum es una aplicación web desarrollada en Angular 12.2.0 que permite a los usuarios interactuar en un foro de discusión. La aplicación permite a los usuarios autenticarse, crear, editar y eliminar publicaciones y comentarios.
 
-## Development server
+## 🛠️ Tecnologías utilizadas
+- **Angular** 12.2.0
+- **Bootstrap** 5.3.3
+- **PrimeNG** 12.2.3
+- **SweetAlert2** 11.16.0
+- **RxJS** 6.6.0
+- **JWT Decode** 4.0.0
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## 📂 Estructura del proyecto
+```
+|-- src
+    |-- app
+        |-- guards       # Guards para autenticación
+        |-- interceptors # Interceptores para peticiones HTTP
+        |-- models       # Modelos de datos
+        |-- pages
+            |-- forum    # Página principal del foro
+            |-- login    # Página de login
+        |-- services
+            |-- auth     # Servicio de autenticación
+            |-- forum    # Servicio de gestión del foro
+            |-- register # Servicio de registro de usuario
+        |-- validators  # Validaciones de formularios
+    |-- assets          # Archivos estáticos
+    |-- environments    # Configuración de entornos
+```
 
-## Code scaffolding
+## 🚀 Instalación y configuración
+### 1️⃣ Clonar el repositorio
+```sh
+git clone https://github.com/tu-repositorio.git
+cd andain-forum
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### 2️⃣ Instalar dependencias
+```sh
+npm install
+```
 
-## Build
+### 3️⃣ Iniciar la aplicación
+```sh
+npm start
+```
+Esto iniciará el servidor en `http://localhost:4200/`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## 🧪 Pruebas unitarias
+Este proyecto utiliza **Karma y Jasmine** para pruebas unitarias.
+Ejecuta las pruebas con:
+```sh
+npm test
+```
 
-## Running unit tests
+## 📜 Scripts disponibles
+| Comando           | Descripción                                |
+|------------------|--------------------------------------------|
+| `npm start`      | Ejecuta la aplicación en modo desarrollo  |
+| `npm build`      | Genera la compilación de producción       |
+| `npm test`       | Ejecuta las pruebas unitarias             |
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## 📄 Licencia
+Este proyecto está bajo la licencia **MIT**.
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
