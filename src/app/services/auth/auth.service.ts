@@ -1,7 +1,7 @@
 // auth.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import * as jwt_decode from 'jwt-decode'; // Asegúrate de tener instalado jwt-decode
+import * as jwt_decode from 'jwt-decode'; 
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +18,6 @@ export class AuthService {
     );
   }
 
-  // Guarda el token en sessionStorage
   setToken(token: string) {
     sessionStorage.setItem(this.tokenKey, token);
   }
@@ -27,7 +26,6 @@ export class AuthService {
     return sessionStorage.getItem(this.tokenKey);
   }
 
-  // Método para obtener el userId decodificando el token
   getUserId(): number | null {
     const token = this.getToken();
     if (!token) {
@@ -43,11 +41,9 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    // Verifica si existe el token en sessionStorage
     return !!this.getToken();
   }
 
-  // Método para deslogearse: elimina el token almacenado
   logout(): void {
     sessionStorage.removeItem(this.tokenKey);
   }
